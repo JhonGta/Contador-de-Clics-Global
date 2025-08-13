@@ -1,3 +1,8 @@
+## Nota sobre despliegue en Vercel y WebSockets
+
+Esta aplicación requiere WebSockets (Socket.io) para el contador global en tiempo real. Sin embargo, **Vercel no soporta WebSockets en su plataforma serverless**, por lo que el contador en tiempo real no funcionará si se despliega allí. Por esta razón, el despliegue funcional debe realizarse en plataformas como Railway, Render, Fly.io o Heroku, que sí permiten procesos persistentes y WebSockets.
+
+Esta limitación es la razón por la que la funcionalidad en tiempo real no está disponible en la versión desplegada en Vercel.
 # Contador Global de Clics
 
 Este proyecto es una aplicación Node.js + Express + Socket.io que permite a cualquier usuario autenticado con Google incrementar un contador global en tiempo real.
