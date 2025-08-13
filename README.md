@@ -1,38 +1,60 @@
 # Contador Global de Clics
 
-Este proyecto implementa:
-- Autenticación OAuth 2.0 con GitHub
-- Gestión de sesión con JWT
-- Contador global de clics en tiempo real con Socket.io
-- Preparado para despliegue en Vercel
+Este proyecto es una aplicación Node.js + Express + Socket.io que permite a cualquier usuario autenticado con Google incrementar un contador global en tiempo real.
 
-## Configuración
+## Funcionamiento (modo local)
 
-1. Renombra `.env` y coloca tus credenciales:
-   - GITHUB_CLIENT_ID
-   - GITHUB_CLIENT_SECRET
-   - JWT_SECRET
-   - CALLBACK_URL
+### 1. Pantalla de inicio
+Al abrir la app, se muestra un modal elegante solicitando iniciar sesión con Google antes de poder interactuar con el contador.
 
-2. Instala dependencias:
+![Pantalla de inicio](https://i.imgur.com/S7SK6jQ.png)
+
+### 2. Selección de cuenta Google
+Al hacer clic en "Iniciar sesión con Google", se abre la pantalla de selección de cuenta.
+
+![Selección de cuenta](https://i.imgur.com/OW1iZ2R.png)
+
+### 3. Consentimiento de Google
+Google muestra la pantalla de consentimiento para autorizar el acceso a tu perfil y correo.
+
+![Consentimiento Google](https://i.imgur.com/DUdmSPb.png)
+
+### 4. Contador global en tiempo real
+Una vez autenticado, puedes ver tu nombre, cerrar sesión y presionar el botón para incrementar el contador global. El valor se actualiza en tiempo real para todos los usuarios conectados.
+
+![Contador global](https://i.imgur.com/V6qVVOY.png)
+
+## Instalación y uso local
+
+1. Clona el repositorio y entra a la carpeta del proyecto.
+2. Crea un archivo `.env` con tus credenciales de Google y JWT.
+3. Instala las dependencias:
+   ```sh
    npm install
-
-3. Ejecuta localmente:
+   ```
+4. Inicia el servidor:
+   ```sh
    npm start
+   ```
+5. Abre [http://localhost:3001](http://localhost:3001) en tu navegador.
 
-4. Accede a `http://localhost:3000` y prueba el flujo.
+## Variables de entorno requeridas
 
-## Despliegue en Vercel
+```
+GOOGLE_CLIENT_ID=tu_client_id
+GOOGLE_CLIENT_SECRET=tu_client_secret
+GOOGLE_CALLBACK_URL=http://localhost:3001/auth/google/callback
+JWT_SECRET=tu_clave_secreta
+JWT_EXPIRES_IN=24h
+CLIENT_URL=http://localhost:3001
+```
 
-- Sube el código a tu repositorio de GitHub.
-- Importa el repo en Vercel y configura las variables de entorno.
-- Vercel detecta automáticamente el script de inicio.
+## Características
+- Autenticación OAuth 2.0 con Google
+- Gestión de sesión con JWT
+- Contador global en tiempo real con Socket.io
+- Interfaz moderna y modal de login
+- Botón para cerrar sesión
 
-## Estructura
-- `src/index.js`: Servidor Express + Socket.io
-- `src/passport.js`: Configuración de OAuth
-- `src/index.html`: Frontend simple
+---
 
-## Entrega
-- Realiza commit con mensaje: "Entrega final del examen"
-- Sube a GitHub y despliega en Vercel
